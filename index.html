@@ -28,6 +28,7 @@ body {
     max-width: 380px;
     text-align: center;
     box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+    transition: transform 0.15s ease;
 }
 
 /* Profile */
@@ -38,6 +39,7 @@ body {
     border: 3px solid #b36bff;
     margin-bottom: 18px;
     box-shadow: 0 0 30px rgba(179,107,255,0.9);
+    object-fit: cover;
 }
 
 .glow-box {
@@ -75,6 +77,7 @@ h2 { margin: 0; font-size: 14px; font-weight: 300; opacity: 0.9; }
     margin: 14px 0;
     font-weight: 600;
     font-size: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* WhatsApp */
@@ -102,6 +105,10 @@ h2 { margin: 0; font-size: 14px; font-weight: 300; opacity: 0.9; }
     fill: #fff;
 }
 
+.links a:hover {
+    transform: translateY(-3px);
+}
+
 footer {
     margin-top: 15px;
     font-size: 12px;
@@ -114,7 +121,8 @@ footer {
 
 <div class="card">
 
-    <img src="https://via.placeholder.com/300" class="profile-img">
+    <!-- Ghost Logo as Profile -->
+    <img src="ghost-logo.png" alt="Ghost Logo" class="profile-img">
 
     <div class="glow-box">
         <h1>Sidharth V</h1>
