@@ -8,107 +8,137 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
 
 <style>
-    body {
-        margin: 0;
-        font-family: 'Poppins', sans-serif;
-        background: linear-gradient(135deg, #14001f, #2a0040, #12001f);
-        color: #fff;
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow-x: hidden;
-    }
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #14001f, #2a0040, #12001f);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
 
-    .card {
-        background: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(14px);
-        border-radius: 24px;
-        padding: 30px;
-        width: 90%;
-        max-width: 380px;
-        text-align: center;
-        box-shadow: 0 25px 60px rgba(0,0,0,0.5);
-    }
+.card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(14px);
+    border-radius: 24px;
+    padding: 30px;
+    width: 90%;
+    max-width: 380px;
+    text-align: center;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+    transition: transform 0.15s ease;
+}
 
-    .profile-img {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 3px solid #b36bff;
-        margin-bottom: 18px;
-        box-shadow: 0 0 25px rgba(179,107,255,0.8);
-    }
+.profile-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #b36bff;
+    margin-bottom: 18px;
+    animation: glowPulse 3s infinite ease-in-out;
+}
 
-    /* Glow box for ALL details */
-    .glow-box {
-        background: rgba(179,107,255,0.12);
-        box-shadow: 0 0 20px rgba(179,107,255,0.8);
-        border-radius: 16px;
-        padding: 12px;
-        margin: 10px 0;
-    }
+@keyframes glowPulse {
+    0%,100% { box-shadow: 0 0 20px rgba(179,107,255,0.6); }
+    50% { box-shadow: 0 0 35px rgba(179,107,255,1); }
+}
 
-    h1 {
-        margin: 5px 0;
-        font-size: 24px;
-    }
+.glow-box {
+    background: rgba(179,107,255,0.12);
+    box-shadow: 0 0 20px rgba(179,107,255,0.8);
+    border-radius: 16px;
+    padding: 12px;
+    margin: 10px 0;
+}
 
-    h2 {
-        margin: 0;
-        font-size: 14px;
-        font-weight: 300;
-        opacity: 0.9;
-    }
+h1 {
+    margin: 5px 0;
+    font-size: 24px;
+}
 
-    .info {
-        font-size: 14px;
-        line-height: 1.6;
-    }
+h2 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 300;
+    opacity: 0.9;
+}
 
-    .links a {
-        display: block;
-        text-decoration: none;
-        background: linear-gradient(135deg, #b36bff, #7a2cff);
-        color: #fff;
-        padding: 12px;
-        border-radius: 14px;
-        margin: 12px 0;
-        font-weight: 500;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        box-shadow: 0 0 18px rgba(179,107,255,0.7);
-    }
+.info {
+    font-size: 14px;
+    line-height: 1.8;
+}
 
-    .links a:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 15px 30px rgba(179,107,255,0.9);
-    }
+.touch-link {
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(255,255,255,0.4);
+}
 
-    footer {
-        margin-top: 15px;
-        font-size: 12px;
-        opacity: 0.6;
-    }
+.links a {
+    display: block;
+    text-decoration: none;
+    background: linear-gradient(135deg, #b36bff, #7a2cff);
+    color: #fff;
+    padding: 12px;
+    border-radius: 14px;
+    margin: 12px 0;
+    font-weight: 500;
+    box-shadow: 0 0 18px rgba(179,107,255,0.7);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-    /* Scroll animation */
-    .animate {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.8s ease;
-    }
+.links a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(179,107,255,0.9);
+}
 
-    .animate.show {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.links a::after {
+    content: '';
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: rgba(255,255,255,0.15);
+    top: -10%;
+    left: -10%;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.links a:active::after {
+    opacity: 1;
+}
+
+footer {
+    margin-top: 15px;
+    font-size: 12px;
+    opacity: 0.6;
+}
+
+.animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.animate.show {
+    opacity: 1;
+    transform: translateY(0);
+}
 </style>
 </head>
 
 <body>
 
 <div class="card">
-    <img src="https://via.placeholder.com/300" alt="Profile Photo" class="profile-img animate">
+    <img src="https://via.placeholder.com/300"
+         alt="Profile Photo"
+         class="profile-img animate">
 
     <div class="glow-box animate">
         <h1>Sidharth V</h1>
@@ -117,16 +147,31 @@
 
     <div class="glow-box info animate">
         📍 Palakkad, India <br>
-        📧 sidhuvinod777@gmail.com <br>
-        📞 8590311766
+        📧 <a class="touch-link" href="mailto:sidhuvinod777@gmail.com">
+            sidhuvinod777@gmail.com
+        </a><br>
+        📞 <a class="touch-link" href="tel:+918590311766">
+            +91 8590311766
+        </a>
     </div>
 
     <div class="links">
-        <a class="animate" href="https://www.instagram.com/d_evil_2011?igsh=ZW5ybDBmdmRveXBs" target="_blank">
-            Instagram
+        <a class="animate"
+           href="https://wa.me/918590311766"
+           target="_blank">
+           WhatsApp
         </a>
-        <a class="animate" href="https://github.com/Ghost8911/My-Profile" target="_blank">
-            GitHub
+
+        <a class="animate"
+           href="https://www.instagram.com/d_evil_2011"
+           target="_blank">
+           Instagram
+        </a>
+
+        <a class="animate"
+           href="https://github.com/Ghost8911/My-Profile"
+           target="_blank">
+           GitHub
         </a>
     </div>
 
@@ -136,17 +181,33 @@
 </div>
 
 <script>
-    const animatedElements = document.querySelectorAll('.animate');
+const animatedElements = document.querySelectorAll('.animate');
 
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('show');
-            }
-        });
-    }, { threshold: 0.2 });
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+        }
+    });
+}, { threshold: 0.2 });
 
-    animatedElements.forEach(el => observer.observe(el));
+animatedElements.forEach(el => observer.observe(el));
+
+// Card tilt micro-animation
+const card = document.querySelector('.card');
+
+card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    card.style.transform =
+        `rotateX(${(-y / 20)}deg) rotateY(${(x / 20)}deg)`;
+});
+
+card.addEventListener('mouseleave', () => {
+    card.style.transform = 'rotateX(0) rotateY(0)';
+});
 </script>
 
 </body>
